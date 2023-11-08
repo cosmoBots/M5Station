@@ -56,10 +56,11 @@ class M5Display : public TFT_eSPI {
                 uint8_t width = 70, uint8_t version = 7);
     void qrcode(const String &string, uint16_t x = 5, uint16_t y = 45,
                 uint8_t width = 70, uint8_t version = 7);
+
+    void clearDisplay(uint32_t color=0) { fillScreen(color); }
+    void clear(uint32_t color=0) { fillScreen(color); }
     /*
-    void clearDisplay(uint32_t color=ILI9341_BLACK) { fillScreen(color); }
-    void clear(uint32_t color=ILI9341_BLACK) { fillScreen(color); }
-    void display() {}
+        void display() {}
 
     inline void startWrite(void){
     #if defined (SPI_HAS_TRANSACTION) && defined (SUPPORT_TRANSACTIONS) &&

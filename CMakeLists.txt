@@ -1,10 +1,11 @@
-set(COMPONENT_SRCDIRS "src" "src/utility" "src/Fonts")
-set(COMPONENT_ADD_INCLUDEDIRS "src" "$ENV{IDF_PATH}/components/bt/host/bluedroid/api/include/api")
-list(APPEND COMPONENT_REQUIRES "arduino")
-
-
-register_component()
-
+idf_component_register(
+    SRC_DIRS 
+        "src" "src/utility" "src/Fonts"
+    INCLUDE_DIRS
+        "src" "$ENV{IDF_PATH}/components/bt/host/bluedroid/api/include/api"
+    REQUIRES
+        arduino
+)
 
 set(DEFINITIONS "ESP32")
 
