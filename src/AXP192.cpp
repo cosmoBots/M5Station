@@ -433,7 +433,7 @@ void AXP192::SetLDOVoltage(uint8_t number, uint16_t voltage) {
 
 /// @param number 0=DCDC1 / 1=DCDC2 / 2=DCDC3
 void AXP192::SetDCVoltage(uint8_t number, uint16_t voltage) {
-    uint8_t addr;
+    uint8_t addr = 0x26;
     if (number > 2) return;
     voltage = (voltage < 700) ? 0 : (voltage - 700) / 25;
     switch (number) {

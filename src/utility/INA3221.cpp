@@ -283,6 +283,12 @@ void INA3221::setChannelEnable(ina3221_ch_t channel) {
         case INA3221_CH3:
             conf_reg.ch3_en = 1;
             break;
+        // Txinto had to add this
+        case INA3221_CH_NUM:
+            // This value was a phantom value to calculate the size of the arrays
+            // Should never appear
+            // TODO: add a panic();
+            break;
     }
 
     _write(INA3221_REG_CONF, (uint16_t *)&conf_reg);
@@ -311,7 +317,7 @@ void INA3221::setChannelDisable(ina3221_ch_t channel) {
 }
 
 void INA3221::setWarnAlertShuntLimit(ina3221_ch_t channel, int32_t voltageuV) {
-    ina3221_reg_t reg;
+    ina3221_reg_t reg = INA3221_REG_CH1_WARNING_ALERT_LIM;
     int16_t val = 0;
 
     switch (channel) {
@@ -333,7 +339,7 @@ void INA3221::setWarnAlertShuntLimit(ina3221_ch_t channel, int32_t voltageuV) {
 }
 
 void INA3221::setCritAlertShuntLimit(ina3221_ch_t channel, int32_t voltageuV) {
-    ina3221_reg_t reg;
+    ina3221_reg_t reg = INA3221_REG_CH1_CRIT_ALERT_LIM;
     int16_t val = 0;
 
     switch (channel) {
@@ -416,7 +422,7 @@ void INA3221::setCurrentSumDisable(ina3221_ch_t channel) {
 
 int32_t INA3221::getShuntVoltage(ina3221_ch_t channel) {
     int32_t res;
-    ina3221_reg_t reg;
+    ina3221_reg_t reg = INA3221_REG_CH1_SHUNTV;
     uint16_t val_raw = 0;
 
     switch (channel) {
@@ -516,7 +522,7 @@ float INA3221::getCurrentCompensated(ina3221_ch_t channel) {
 
 float INA3221::getVoltage(ina3221_ch_t channel) {
     float voltage_V = 0.0;
-    ina3221_reg_t reg;
+    ina3221_reg_t reg = INA3221_REG_CH1_BUSV;
     uint16_t val_raw = 0;
 
     switch (channel) {

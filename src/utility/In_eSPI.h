@@ -17,6 +17,9 @@
 
 #define TFT_ESPI_VERSION "1.4.5"
 
+// Txinto had to add this
+#include "hal/gpio_ll.h"
+
 //#define ESP32 //Just used to test ESP32 options
 
 // Include header file that defines the fonts loaded, the TFT drivers
