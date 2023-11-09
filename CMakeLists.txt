@@ -5,6 +5,8 @@ idf_component_register(
         "src" "$ENV{IDF_PATH}/components/bt/host/bluedroid/api/include/api"
     REQUIRES
         arduino
+    REQUIRED_IDF_TARGETS        
+        esp32        
 )
 
 set(DEFINITIONS "ESP32")
